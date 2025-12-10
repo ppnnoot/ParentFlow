@@ -1,59 +1,68 @@
-# DdApp
+# ParentFlow
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.19.
+A modern, interactive Organization Chart application built with Angular, Angular CDK, and Angular Material.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- **Interactive Drag & Drop**: Easily move nodes between levels or back to the available pool.
+- **Dynamic Hierarchy**: Add unlimited levels. Children automatically group under their parents.
+- **Smart Connectors**: 
+  - Native SVG implementation.
+  - Smooth "Rounded Corner" lines connecting parents to children.
+  - Perfect synchronization with scrolling.
+- **Edit Mode**:
+  - **View-Only by default**: Prevents accidental changes.
+  - **Edit Mode**: Unlocks Drag-and-Drop, "Add Level" (+), and "Delete Node" (Hover 'X') features.
+- **Data Management**:
+  - Functional State Management using Angular Signals (`org-chart.store.ts`).
+  - Add new nodes with custom names (Thai, Chinese, Vietnamese support).
+  - Recursive deletion (deleting a parent deletes all descendants) with confirmation dialog.
+
+## Tech Stack
+
+- **Framework**: Angular (Standalone Components)
+- **UI Library**: Angular Material
+- **Interactions**: Angular CDK (DragDrop)
+- **Styling**: SCSS (Flexbox, Relative/Absolute positioning)
+- **State**: Angular Signals
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18+ recommended)
+- Angular CLI
+
+### Installation
+
+```bash
+# Clone the repository
+git clone <repository-url>
+
+# Install dependencies
+npm install
+```
+
+### Running the Application
 
 ```bash
 ng serve
+# Navigate to http://localhost:4200/
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Usage Guide
 
-## Code scaffolding
+1.  **Viewing**: The chart opens in Read-Only mode. You can scroll and view the hierarchy.
+2.  **Editing**: Click the **"Edit"** button at the bottom action bar.
+2.  **Adding a Node**: 
+    - Click the **Fab "+" Button** in the sidebar to create a new Position Node.
+    - Drag it from the "Available Positions" list into Level 1 or onto a Parent in Level > 1.
+3.  **Adding a Level**: Click the **"+"** button in the bottom action bar (Edit Mode only).
+4.  **Connecting**:
+    - **Level 1**: Drop anywhere in the Level 1 row.
+    - **Level > 1**: Drop onto a target level. A generic grouping logic ensures it appears under the correct parent. *Note: Strict parent selection is handled during the drop event.*
+5.  **Deleting**: Hover over a node card and click the **Red 'X'** button. Confirm the dialog.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## License
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+MIT

@@ -1,0 +1,267 @@
+.app-container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    background-color: #f5f7fa;
+}
+
+.main-chart {
+    width: 75%;
+    padding: 20px;
+    overflow-y: auto;
+    border-right: 1px solid #e0e0e0;
+    position: relative; /* For FAB positioning if needed */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.create-fab {
+    width: 50px;
+    height: 50px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2) !important;
+}
+
+.sidebar {
+    width: 25%;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.05);
+    overflow-y: auto;
+}
+
+h2 {
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0; 
+}
+
+/* Levels */
+.levels-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative; /* Context for SVG */
+    min-width: fit-content; /* Ensure it grows with content */
+}
+
+.connector-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: visible; /* Allow wide lines */
+    
+    path {
+        fill: none;
+        stroke: #cbd5e0;
+        stroke-width: 2px;
+    }
+}
+
+.level-row {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.level-label {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.level-list {
+    min-height: 80px;
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    justify-content: center; /* Center nodes */
+    gap: 15px;
+    flex-wrap: wrap; 
+    padding: 10px;
+    background-color: #fafafa;
+    border: 1px dashed #ccc;
+    border-radius: 6px;
+}
+
+/* Sidebar List */
+.available-list {
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    background-color: #fafafa;
+    border: 1px dashed #ccc;
+    border-radius: 6px;
+    margin-top: 20px;
+}
+
+/* Node Card */
+.node-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 12px;
+    min-width: 140px;
+    cursor: move;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: box-shadow 0.2s, transform 0.2s;
+    user-select: none;
+    position: relative;
+    
+    &:hover {
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transform: translateY(-2px);
+    }
+}
+
+.node-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.delete-btn {
+    background-color: pink;
+    position: absolute !important;
+    justify-content: center !important;
+    align-items: center !important;
+    top: -10px;
+    right: -10px;
+    width: 16px !important;
+    height: 16px !important;
+    line-height: 16px !important;
+    padding: 0 !important;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    
+    mat-icon {
+        font-size: 14px !important;
+        width: 14px !important;
+        height: 14px !important;
+    }
+}
+
+.node-title {
+    top: -10px;
+    position: absolute !important;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    pointer-events: none; /* Prevent interfering with drag */
+    background: #666;
+    color: white;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    z-index: 10;
+}
+
+.node-card:hover .node-title {
+    opacity: 1;
+}
+
+.node-card:hover .delete-btn {
+    opacity: 1;
+}
+
+.cdk-drag-preview {
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+                0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                0 3px 14px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+    background-color: white; 
+    padding: 12px;
+    min-width: 140px;
+}
+
+.cdk-drag-placeholder {
+    opacity: 0.3;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.available-list.cdk-drop-list-dragging .node-card:not(.cdk-drag-placeholder),
+.level-list.cdk-drop-list-dragging .node-card:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.node-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #2c3e50;
+    white-space: normal; /* Allow wrapping */
+    overflow: visible;
+    text-align: center;
+    width: 100%;
+    line-height: 1.2;
+}
+
+.node-header {
+    display: flex;
+    justify-content: center; /* Center the text */
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.node-type {
+    font-size: 0.75rem;
+    color: #7f8c8d;
+    margin-top: 4px;
+}
+
+.node-thai {
+    font-size: 0.75rem;
+    color: #95a5a6;
+    margin-top: 2px;
+}
+
+.parent-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 0 10px;
+    /* Optional: minimal border or spacing to visualize the group if needed, 
+       but for now just grouping for alignment */
+    min-width: 50px; /* Ensure empty groups take a little space */
+}
+
+/* Action Bar */
+.action-bar {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    position: sticky;
+    bottom: 0;
+    background: #f5f7fa; /* Match background to cover content behind */
+    z-index: 100;
+    width: 100%;
+    border-top: 1px solid #ddd;
+}
+
+.edit-controls {
+    display: flex;
+    gap: 15px;
+}
